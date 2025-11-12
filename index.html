@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Design to Cost Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Autodesk Forge Viewer for .jt files -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+    <!-- Three.js for 3D visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">Design to Cost Assistant</h1>
+                <span class="dev-tag">Dev Version</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link active">Search</a>
+                <a href="#" class="nav-link">Compare</a>
+                <a href="#" class="nav-link">Recently approved items</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <h3 class="section-title">
+                    <span class="icon">🔍</span>
+                    Search
+                </h3>
+                <input type="text" class="search-input" value="PAAF704480" placeholder="Enter item code">
+                
+                <div class="geometry-match">
+                    <label>Geometry match %</label>
+                    <div class="slider-container">
+                        <input type="range" min="30" max="120" value="75" class="slider">
+                        <div class="range-labels">
+                            <span>30</span>
+                            <span>120</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-buttons">
+                    <button class="btn btn-secondary">Reset</button>
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                <button class="btn btn-link">Advanced search</button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3 class="section-title">Filter search results</h3>
+                
+                <div class="filter-group">
+                    <label>Item Name</label>
+                    <input type="text" class="filter-input" placeholder="Enter item name">
+                </div>
+
+                <div class="filter-group">
+                    <label>Product type</label>
+                    <input type="text" class="filter-input" placeholder="Enter product type">
+                </div>
+
+                <div class="filter-group">
+                    <label>Material</label>
+                    <input type="text" class="filter-input" placeholder="Enter material">
+                </div>
+
+                <div class="filter-group">
+                    <label>Weight</label>
+                    <div class="weight-slider">
+                        <div class="weight-points">
+                            <span class="weight-point">0.5x</span>
+                            <span class="weight-point">2x</span>
+                            <span class="weight-point">10x</span>
+                            <span class="weight-point">∞</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="result-header">
+                <h2>RESULT FOR "PAAF704480"</h2>
+            </div>
+
+            <!-- Main Item Details -->
+            <div class="item-details">
+                <div class="item-image">
+                    <div class="part-image">SHIM</div>
+                    <div class="action-icons">
+                        <div class="icon-btn" title="Delete">🗑️</div>
+                        <div class="icon-btn" title="Search">🔍</div>
+                        <div class="icon-btn" title="Edit">🔧</div>
+                        <div class="icon-btn" title="Settings">⚙️</div>
+                        <div class="icon-btn" title="Share">📤</div>
+                        <div class="icon-btn bom-icon" title="Show where used details in bom/engine S">🔗</div>
+                        <div class="icon-btn" title="More">⋯</div>
+                        <div class="icon-btn" title="Info">ℹ️</div>
+                    </div>
+                    <button class="btn btn-primary">Over View</button>
+                </div>
+                
+                <div class="item-info">
+                    <div class="info-header">
+                        <h3 class="item-id">PAAF704480</h3>
+                        <p class="item-name">SHIM</p>
+                        <div class="info-header-links">
+                            <span class="revision-id">Revision ID: A</span>
+                            <a href="#" class="more-info-link">MORE INFO ></a>
+                        </div>
+                    </div>
+
+                    <div class="info-cards">
+                        <!-- PRODUCT OVERVIEW -->
+                        <div class="info-card product-overview">
+                            <h4 class="card-title">PRODUCT OVERVIEW</h4>
+                            <div class="card-content">
+                                <div class="card-row">
+                                    <span class="card-label">Material:</span>
+                                    <span class="card-value">CuAl10Fe5Ni5</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Product type:</span>
+                                    <span class="card-value">W46TS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TECHNICAL SPECIFICATION -->
+                        <div class="info-card technical-spec">
+                            <h4 class="card-title">TECHNICAL SPECIFICATION</h4>
+                            <div class="card-content">
+                                <div class="card-row">
+                                    <span class="card-label">Basic material:</span>
+                                    <span class="card-value">FOR CONNECTING ROD</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Dimensions:</span>
+                                    <span class="card-value">S=10.0</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Weight:</span>
+                                    <span class="card-value">5,4 kg</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Design group:</span>
+                                    <span class="card-value">11B3</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Revision ID:</span>
+                                    <span class="card-value">A</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COMMERCIAL INFORMATION -->
+                        <div class="info-card commercial-info">
+                            <h4 class="card-title">COMMERCIAL INFORMATION</h4>
+                            <div class="card-content">
+                                <div class="card-row">
+                                    <span class="card-label">Agreement No.:</span>
+                                    <span class="card-value">4600020947</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">For plant:</span>
+                                    <span class="card-value">F106,F160</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Price unit:</span>
+                                    <span class="card-value">1</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Batch size:</span>
+                                    <span class="card-value">50</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Net price:</span>
+                                    <span class="card-value">228 €</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Price / pc:</span>
+                                    <span class="card-value">228 €</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">€/kg:</span>
+                                    <span class="card-value">42,14 €</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">LT:</span>
+                                    <span class="card-value">70</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Cat:</span>
+                                    <span class="card-value">Y04</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Special:</span>
+                                    <span class="card-value">-</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Vendor:</span>
+                                    <span class="card-value">0000001684 - Sacometal Oy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Model Viewer Gimbal -->
+            <div class="model-viewer-section">
+                <div class="viewer-header">
+                    <h3>3D Model Viewer</h3>
+                    <button class="close-viewer" style="display: none;">×</button>
+                </div>
+                <div id="model-viewer-container" class="model-viewer-container" style="display: none;">
+                    <div class="viewer-controls">
+                        <button class="viewer-btn" id="rotate-btn" title="Auto Rotate">🔄</button>
+                        <button class="viewer-btn" id="reset-btn" title="Reset View">↻</button>
+                        <button class="viewer-btn" id="zoom-in-btn" title="Zoom In">+</button>
+                        <button class="viewer-btn" id="zoom-out-btn" title="Zoom Out">-</button>
+                    </div>
+                    <div id="viewer-placeholder" class="viewer-placeholder">
+                        <p>Select a .jt file to view the 3D model</p>
+                        <p class="viewer-note">Loading viewer...</p>
+                    </div>
+                    <canvas id="model-canvas" class="model-canvas" style="display: none;"></canvas>
+                </div>
+            </div>
+
+            <!-- Similar Results -->
+            <div class="similar-results">
+                <h3>SIMILAR RESULTS</h3>
+                <div class="results-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item <span class="sort-icon">↕</span></th>
+                                <th>Item Name <span class="sort-icon">↕</span></th>
+                                <th>Material <span class="sort-icon">↕</span></th>
+                                <th>Weight <span class="sort-icon">↕</span></th>
+                                <th>Cat <span class="sort-icon">↕</span></th>
+                                <th>PredCat <span class="sort-icon">↕</span></th>
+                                <th>AGR <span class="sort-icon">↕</span></th>
+                                <th>MAP <span class="sort-icon">↕</span></th>
+                                <th>€/kg <span class="sort-icon">↕</span></th>
+                                <th>Product family <span class="sort-icon">↕</span></th>
+                                <th>Class type <span class="sort-icon">↕</span></th>
+                                <th>Should <span class="sort-icon">↕</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🔽 PAAF914234</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>3 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46TS</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA001398</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>4.3 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46TS</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA001656</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>5.4 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46F</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA001789</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>3.18 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46TS</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA002134</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>2.8 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46F</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA002567</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>4.1 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46TS</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>🔽 PABA002891</td>
+                                <td><span class="shim-icon"></span> SHIM</td>
+                                <td>CuAl10Fe5Ni5</td>
+                                <td>3.7 kg</td>
+                                <td>Y04</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>✅</td>
+                                <td>42,14 €</td>
+                                <td>Engine 46F</td>
+                                <td>PRT</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
