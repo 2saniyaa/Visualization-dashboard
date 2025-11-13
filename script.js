@@ -50,6 +50,25 @@ function openJtFileInPopup(filePath) {
     
     const fileName = filePath.split('/').pop();
     
+    // Extract weight, material, and description from the page
+    const getValueByLabel = (labelText) => {
+        const labels = document.querySelectorAll('.card-label');
+        for (let label of labels) {
+            if (label.textContent.includes(labelText)) {
+                const row = label.closest('.card-row');
+                const value = row ? row.querySelector('.card-value') : null;
+                return value ? value.textContent.trim() : 'N/A';
+            }
+        }
+        return 'N/A';
+    };
+    
+    const weight = getValueByLabel('Weight');
+    const material = getValueByLabel('Material');
+    const description = document.querySelector('.item-name')?.textContent.trim() || 
+                       document.querySelector('.item-id')?.textContent.trim() || 
+                       'No description available';
+    
     // Remove existing popup if any
     const existingPopup = document.getElementById('viewer-popup-modal');
     if (existingPopup) {
@@ -65,6 +84,20 @@ function openJtFileInPopup(filePath) {
             <div class="viewer-popup-header">
                 <h3>3D Viewer - ${fileName}</h3>
                 <button class="viewer-popup-close" onclick="closeViewerPopup()">&times;</button>
+            </div>
+            <div class="viewer-popup-info">
+                <div class="viewer-popup-info-item">
+                    <span class="viewer-popup-info-label">Weight:</span>
+                    <span class="viewer-popup-info-value">${weight}</span>
+                </div>
+                <div class="viewer-popup-info-item">
+                    <span class="viewer-popup-info-label">Material:</span>
+                    <span class="viewer-popup-info-value">${material}</span>
+                </div>
+                <div class="viewer-popup-info-item">
+                    <span class="viewer-popup-info-label">Description:</span>
+                    <span class="viewer-popup-info-value">${description}</span>
+                </div>
             </div>
             <div class="viewer-popup-controls">
                 <button class="viewer-popup-btn" id="popup-rotate-btn">🔄 Rotate</button>

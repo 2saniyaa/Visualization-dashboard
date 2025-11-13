@@ -646,6 +646,33 @@ button {
     cursor: pointer;
 }
 
+.viewer-popup-info {
+    background: #f9fafb;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.viewer-popup-info-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.viewer-popup-info-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.viewer-popup-info-value {
+    font-size: 0.875rem;
+    color: #1f2937;
+    font-weight: 500;
+}
+
 .viewer-popup-controls {
     display: flex;
     justify-content: center;
